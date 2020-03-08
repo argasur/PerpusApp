@@ -21,13 +21,12 @@
         <div class="form-group">
           <label for="kategoriBuku">Kategori</label>
           <select class="form-control" name="kategoriBuku" id="kategoriBuku">
-            <option>Novel</option>
-            <option>Fiksi</option>
-            <option>Komik</option>
-            <option>Edukasi</option>
+          <?php foreach($kategori as $k) : ?>
+            <option value="<?= $k;?>"><?= $k;?></option>
+          <?php endforeach;?>
           </select>
         </div>
-          <button type="submit" class="btn btn-info">Tambah Data</button>
+          <button type="submit" class="btn btn-primary float-right">Tambah Data</button>
       </form>
     </div>
   </div>

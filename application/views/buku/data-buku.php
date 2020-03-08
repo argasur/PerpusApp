@@ -9,19 +9,28 @@
         </div>
     </div>
     <?php endif;?>
-    <div class="mt-3">
-            <h3>Daftar Buku</h3>
-            <nav class="navbar">
+        <div class="mt-3">
             <a class="btn btn-success" href="<?= base_url();?>buku/tambah" role="button">Tambah Buku</a>
-            <form class="form-inline justify-content-end">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-danger my-2 my-sm-0" type="submit">Search</button>
-            </form>
-            </nav>
+                <div class="d-flex bd-highlight">
+                    <div class="mr-auto p-2 bd-highlight">
+                        <h3>Daftar Buku</h3>
+                    </div>
+                    <div class="p-2 bd-highlight">
+                        <form action="" method="post">
+                            <div class="input-group mt-2">
+                                    <input type="text" class="form-control" placeholder="Cari data buku.." name ="kataKunci">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit">Cari</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>             
             </div>
         <div class="row mt-2">
+        
             <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr class="table-info">
                         <th scope="col">#</th>
@@ -50,6 +59,11 @@
                         <?php }?>
                     </tbody>
                 </table>
+                <?php if(empty($query)) : ?>
+                    <div class="alert alert-danger" role="alert">
+                        data buku tidak ditemukan.
+                    </div>
+                <?php endif;?>
             </div>    
         </div>    
     </div>

@@ -10,13 +10,20 @@ class Buku extends CI_Controller{
     {
         $data['judul']='Halaman Buku';
         $data['query']=$this->Buku_M->get();
+        if($this->input->post('kataKunci'))
+        {
+            $data['query']=$this->Buku_M->cariDataBuku();
+        }
         $this->load->view('template/header',$data);
         $this->load->view('buku/data-buku',$data);
         $this->load->view('template/footer');
     }
+
+    //Tambah Data Buku
     public function tambah()
     {
         $data['judul']='Tambah Buku';
+        $data['kategori']=['Novel','Fiksi','Komik','Edukasi','Dongeng'];
         $this->form_validation->set_rules('judulBuku','Judul Buku', 'required');
         $this->form_validation->set_rules('namaPengarang','Nama Pengarang', 'required');
         $this->form_validation->set_rules('tahunTerbit','Tahun Terbit', 'required');
@@ -34,12 +41,16 @@ class Buku extends CI_Controller{
             redirect('buku');
         }
     }
+
+    //Menghapus Data Buku
     public function hapus($Id_Buku)
     {
         $this->Buku_M->hapusBuku($Id_Buku);
         $this->session->set_flashdata('flash','Dihapus');
         redirect('buku');
     }
+    
+    //Mengubah Data Buku
     public function edit($Id_Buku){
 
         $data['judul']='Form Ubah Data Buku';
